@@ -43,8 +43,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - language: c-cpp
-          build-mode: manual
+        - language: cpp
         - language: javascript-typescript
           build-mode: none
         - language: python
@@ -89,13 +88,13 @@ jobs:
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
     - name: Autobuild
-      if: ${{ matrix.language == 'c-cpp' }}
+      if: ${{ matrix.language == 'cpp' }}
       shell: bash
       run: |
           sh -x build_dependencies.sh
           sh -x cov_build.sh
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v4
+      uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
