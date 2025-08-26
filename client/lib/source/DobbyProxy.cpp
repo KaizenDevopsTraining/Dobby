@@ -188,7 +188,7 @@ void DobbyProxy::unregisterListener(int id)
     std::map<int, std::pair<StateChangeListener, const void*>>::iterator it = mListeners.find(id);
     if (it == mListeners.end())
     {
-        AI_LOG_ERROR("no listener installed with id %d", id);
+        AI_LOG_ERROR("no listener installed with id %d");
         return;
     }
 
